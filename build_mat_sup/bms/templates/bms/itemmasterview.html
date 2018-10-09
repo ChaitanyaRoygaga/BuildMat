@@ -1,0 +1,26 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Item Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Short Name</td>
+        <td><b>Item Name</td>
+        <td><b>Unit of Measurement</td>
+        <td><b>Item Group</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.short_name }}</td>
+        <td>{{ item.item_name }}</td>
+        <td>{{ item.unit_measure }}</td>
+        <td>{{ item.item_group }}</td>
+	<td><a href="" onclick="return popitup('/bms/itdelete/{{ item.short_name }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

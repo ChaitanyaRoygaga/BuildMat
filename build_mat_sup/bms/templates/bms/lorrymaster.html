@@ -1,0 +1,46 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<!--DatePicker-->
+<head>
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>  
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+   <script type="text/javascript">
+       $(function() {
+               $("#id_tax_date").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+	$(function() {
+               $("#id_puc_date").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+	$(function() {
+               $("#id_permit_date").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+	$(function() {
+               $("#id_insur_date").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+   </script>
+<style>
+	#id_length, #id_breadth {
+    width: 91%;
+}
+</style>
+</head>
+<body margin-top="20px" >
+<header>
+	Lorry Master [Add new]
+</header>
+<center>
+<article>
+    <table width="32%">
+	<tr align="center"><td colspan="2"><h6>[Provide Lorry Code for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:lorry' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+		<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+</body>
+{% endblock %}

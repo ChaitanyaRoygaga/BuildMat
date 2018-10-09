@@ -1,0 +1,197 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+
+<!--DatePicker-->
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>  
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+   <script type="text/javascript">
+       $(function() {
+               $("#datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+   </script>
+
+<!--Convert ft,inch to cm-->
+<script language="javascript" type="text/javascript">
+function convert1() {
+	var uFt = document.getElementById('ft1');
+	var uIn = document.getElementById('in1');
+	var uCm = document.getElementById('cm1');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot1');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function convert2() {
+	var uFt = document.getElementById('ft2');
+	var uIn = document.getElementById('in2');
+	var uCm = document.getElementById('cm2');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot2');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function convert3() {
+	var uFt = document.getElementById('ft3');
+	var uIn = document.getElementById('in3');
+	var uCm = document.getElementById('cm3');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot3');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function prod() {
+	var in1 = document.getElementById('inTot1').value;
+	var in2 = document.getElementById('inTot2').value;
+	var in3 = document.getElementById('inTot3').value;
+	var q = document.getElementById('quantity');
+	var formula = (in1*in2*in3)/(172800);
+	var answer = Math.round(formula*100)/100;
+	q.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function addVoucher() {
+	var date = document.getElementById('datepicker').value;
+	date1 = date.toString();
+	var d1 = date1.substr(2, 8);
+	d1=d1.replace(/-/g, '')
+	var q = document.getElementById('voucher');
+	var formula = d1+"00"+1;
+	q.value = formula;
+}
+</script>
+</head>
+<body margin-top="20px" >
+<header>
+	Transaction [Add New]
+</header>
+<center>
+<article>
+<center>
+<form id="myForm" action="{% url 'bms:transact' %}" method="POST" autocomplete="on">
+{% csrf_token %}
+	<table width="38%">
+		<tr align="center"><td colspan="2"><h6>[Provide Voucher Number for updating corresponding values]</h6></td></tr>
+		<tr><td><b>{{ form.tr_date.label_tag }}</td><td>{{ form.tr_date.errors }}
+	<input type="text" id="datepicker" style="width:85%" {{ form.tr_date }} </h4></td></tr>
+		<tr><td><b>{{ form.vr_no.label_tag }}</td><td>{{ form.vr_no.errors }}
+	<input style="width:85%" id="voucher" onfocus="addVoucher()" {{ form.vr_no }}</h4></td></tr>
+		<tr><td><b>{{ form.lorry_code.label_tag }}</td><td>
+		{{ form.lorry_code.errors }}
+		<select name="lorry_code" style="width:85%">
+		  <option value="" selected="selected">- - - - - - - SELECT - - - - - - -</option>
+		{% for l in lorry_code %}
+			<option value="{{ l }}">{{ l }}</option>
+		{% endfor %}
+		</select>	
+		</h4><br/>
+		<a href="/bms/lorrymaster/">Lorry not present? Click here to add</a>
+		</td></tr>
+		<tr><td><b>{{ form.trip.label_tag }}</td><td>{{ form.trip.errors }}
+	<input style="width:85%" {{ form.trip }}</h4></td></tr>
+		<tr><td><b>{{ form.challan_no.label_tag }}</td><td>{{ form.challan_no.errors }}
+	<input type="text" style="width:85%" {{ form.challan_no }}</h4></td></tr>
+		<tr><td><b>{{ form.buyer.label_tag }}</td><td>
+		{{ form.buyer.errors }}
+		<select name="buyer" style="width:85%">
+		  <option value="" selected="selected">- - - - - - - SELECT - - - - - - -</option>
+		  {% for item in bp_buyer %}
+			<option value="{{ item.name }}">{{ item.name }}</option>
+		  {% endfor %}
+		</select>
+		</h4><br/>
+		<a href="/bms/businesspartnermaster/">Buyer not present? Click here to add</a>
+		</td></tr>
+		<tr><td><b>{{ form.supplier.label_tag }}</td><td>
+		{{ form.supplier.errors }}
+		<select name="supplier" style="width:85%">
+		  <option value="" selected="selected">- - - - - - - SELECT - - - - - - -</option>
+		  {% for item in bp_supplier %}
+			<option value="{{ item.name }}">{{ item.name }}</option>
+		  {% endfor %}
+		</select>
+		</h4><br/>
+		<a href="/bms/businesspartnermaster/">Supplier not present? Click here to add</a>
+		</td></tr>
+		<tr><td><b>{{ form.site_code.label_tag }}</td><td>
+		{{ form.site_code.errors }}
+		<select name="site_code" style="width:85%">
+		  <option value="" selected="selected">- - - - - - - SELECT - - - - - - -</option>
+		  {% for item in site_code %}
+			<option value="{{ item }}">{{ item }}</option>
+		  {% endfor %}
+		</select>
+		</h4><br/>
+		<a href="/bms/sitemaster/">Site not present? Click here to add</a>
+		</td></tr>
+		<tr><td><b>{{ form.short_name.label_tag }}</td><td>
+		{{ form.short_name.errors }}
+		<select name="short_name" style="width:85%">
+		  <option value="" selected="selected">- - - - - - - SELECT - - - - - - -</option>
+		{% for s in short_name %}
+			<option value="{{ s.short_name }}">{{ s.short_name }} [Unit Measure: {{ s.unit_measure }}]</option>
+		{% endfor %}
+		</select>
+		</h4><br/>
+		<a href="/bms/itemmaster/">Item not present? Click here to add</a>
+		</td></tr>
+		<!--<tr align="right"><td><h4>Unit Measure:</td><td>
+		{% for s in short_name %}
+			<label>{{ s.unit_measure }}</label>
+		{% endfor %}
+		</td></tr>-->
+		<tr><td><b>{{ form.pur_rate.label_tag }}</td><td>{{ form.pur_rate.errors }}
+	<input style="width:85%" {{ form.pur_rate }}</h4></td></tr>
+		<tr><td><b>{{ form.sale_rate.label_tag }}</td><td>{{ form.sale_rate.errors }}
+	<input style="width:85%" {{ form.sale_rate }}</h4></td></tr>
+	</table>
+	<table width="100%">
+		<tr align="center">
+			<td colspan="5"><b>{{ form.length.label }}</b></td>
+			<td colspan="5"><b>{{ form.breadth.label }}</b></td>
+			<td colspan="5"><b>{{ form.height.label }}</b></td>
+			<td><b>{{ form.quantity.label }}</b></td>
+		</tr>
+		<tr>
+			<td><input type="number" style="width:100%" id="ft1" placeholder="Feet" /></td>
+			<td><input type="number" style="width:100%" id="in1" placeholder="Inches" /></td>
+			<td><input type="number" style="width:100%" id="cm1" placeholder="Cms" /></td>
+			<td>=</td>
+			<td>{{ form.length.errors }}<input style="width:100%" id="inTot1" onfocus="convert1()" placeholder="Inches" {{ form.length }}</td>
+			<td><input type="number" style="width:100%" id="ft2" placeholder="Feet" /></td>
+			<td><input type="number" style="width:100%" id="in2" placeholder="Inches" /></td>
+			<td><input type="number" style="width:100%" id="cm2" placeholder="Cms" /></td>
+			<td>=</td>
+			<td>{{ form.breadth.errors }}<input style="width:100%" id="inTot2" onfocus="convert2()" placeholder="Inches" {{ form.breadth }}</td>
+			<td><input type="number" style="width:100%" id="ft3" placeholder="Feet" /></td>
+			<td><input type="number" style="width:100%" id="in3" placeholder="Inches" /></td>
+			<td><input type="number" style="width:100%" id="cm3" placeholder="Cms" /></td>
+			<td>=</td>
+			<td>{{ form.height.errors }}<input style="width:100%" id="inTot3" onfocus="convert3()" placeholder="Inches" {{ form.height }}</td>
+			<td>{{ form.quantity.errors }}<input style="width:100%" id="quantity" onfocus="prod()" {{ form.quantity }}</td>
+		</tr>
+		<tr align="center"><td colspan="17"><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</table>
+</form>
+</center>
+</article>
+</center>
+</body>
+{% endblock %}

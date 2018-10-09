@@ -1,0 +1,137 @@
+{% load widget_tweaks %}
+{% load static %}
+<head>
+    <!--Page structure css -->
+<link href="{% static 'bms/css/style.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'bms/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!--Pop Up-->
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+    var left = (screen.width - 400) / 2;
+    var top = (screen.height - 200) / 4;
+    newwindow=window.open(url,'{{title}}','height=200,width=400,top='+top+',left='+left);
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+</script>
+  <style>
+    .topnav .dropdown .dropbtn {
+      font-size:11.3px;
+      padding: 5px;
+    }
+    .topnav a {
+      font-size:11.3px;
+      padding: 5px;
+    }
+  </style>
+
+  <div class="topnav" id="myTopnav">
+  <div class="dropdown">
+    <button class="dropbtn">| Item Group Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/itemgroupmaster/">Add/Update</a>
+      <a href="/bms/itemgroupmasterview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Item Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/itemmaster/">Add/Update</a>
+      <a href="/bms/itemmasterview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Lorry Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/lorrymaster/">Add/Update</a>
+      <a href="/bms/lorrymasterview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Business Partner Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/businesspartnermaster/">Add/Update</a>
+      <a href="/bms/businesspartnermasterview/">View</a>
+    </div>
+  </div>
+    &nbsp;<a href="/bms/statemaster/">State Master |</a>
+    <div class="dropdown">
+    <button class="dropbtn">Site Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/sitemaster/">Add/Update</a>
+      <a href="/bms/sitemasterview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Business Group Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/businessgroupmaster/">Add/Update</a>
+      <a href="/bms/businessgroupmasterview/">View</a>
+    </div>
+  </div>
+      <div class="dropdown">
+    <button class="dropbtn">Unit of Measure Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/uom/">Add/Update</a>
+      <a href="/bms/uomview/">View</a>
+    </div>
+  </div>
+      <div class="dropdown">
+    <button class="dropbtn">Quotation
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/quote/">Add/Update</a>
+      <a href="/bms/quoteview/">View</a>
+    </div>
+  </div>
+<div class="dropdown">
+    <button class="dropbtn">Quotation Details
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/quotedetails/">Add/Update</a>
+      <a href="/bms/quotedetailsview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Company Master
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/companymaster/">Add/Update</a>
+      <a href="/bms/companymasterview/">View</a>
+    </div>
+  </div>
+    <div class="dropdown">
+    <button class="dropbtn">Transaction
+      <i class="fa fa-caret-down"></i> |
+    </button>
+    <div class="dropdown-content">
+      <a href="/bms/transaction/">Add/Update</a>
+      <a href="/bms/transactionview/">View</a>
+    </div>
+  </div>
+</div>
+</head>
+<body margin-top="20px" >
+{% block content %}
+{% endblock %}
+</body>

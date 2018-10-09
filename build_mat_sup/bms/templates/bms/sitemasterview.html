@@ -1,0 +1,38 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Site Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Site Code</td>
+        <td><b>Site Name</td>
+        <td><b>Address Line 1</td>
+        <td><b>Address Line 2</td>
+        <td><b>City</td>
+        <td><b>PIN</td>
+        <td><b>State Code</td>
+        <td><b>GST Number</td>
+        <td><b>Contact Person</td>
+        <td><b>Site Contact</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.site_code }}</td>
+        <td>{{ item.site_name }}</td>
+        <td>{{ item.address_1 }}</td>
+        <td>{{ item.address_2 }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.pin }}</td>
+        <td>{{ item.state_code }}</td>
+        <td>{{ item.gst_no }}</td>
+        <td>{{ item.contact_person }}</td>
+        <td>{{ item.site_contact }}</td>
+	<td><a href="" onclick="return popitup('/bms/sitedelete/{{ item.site_code }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

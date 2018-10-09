@@ -1,0 +1,25 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<head>
+<style>
+	#id_gst_rate {
+    width: 91%;
+}
+</style>
+</head>
+<header>
+	Item Group Master [Add New]
+</header>
+<center>
+<article>
+<table width="32%">
+	<tr align="center"><td colspan="2"><h6>[Provide Item Group for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:itemgroup' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+		<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+{% endblock %}

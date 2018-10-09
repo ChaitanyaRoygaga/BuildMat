@@ -1,0 +1,48 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Company Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Company Code</td>
+        <td><b>Company Name</td>
+        <td><b>Address Line 1</td>
+        <td><b>Address Line 2</td>
+        <td><b>City</td>
+        <td><b>PIN</td>
+        <td><b>State Code</td>
+        <td><b>Phone</td>
+        <td><b>Mobile</td>
+        <td><b>GST Number</td>
+        <td><b>Bank Name</td>
+        <td><b>Account Number</td>
+        <td><b>IFSC Code</td>
+        <td><b>Jurisdiction</td>
+        <td><b>Interest Rate</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.company_code }}</td>
+        <td>{{ item.comp_name }}</td>
+        <td>{{ item.address_1 }}</td>
+        <td>{{ item.address_2 }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.pin }}</td>
+        <td>{{ item.state_code }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.mobile }}</td>
+        <td>{{ item.gst_no }}</td>
+        <td>{{ item.bank_name }}</td>
+        <td>{{ item.ac_no }}</td>
+        <td>{{ item.ifsc_code }}</td>
+        <td>{{ item.jurisdiction }}</td>
+        <td>{{ item.interest_rate }}</td>
+	<td><a href="" onclick="return popitup('/bms/companydelete/{{ item.company_code }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

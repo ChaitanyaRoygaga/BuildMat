@@ -1,0 +1,24 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Item Group Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Item Group</td>
+        <td><b>Item Group Name</td>
+        <td><b>GST Rate</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.item_group }}</td>
+        <td>{{ item.item_group_name }}</td>
+        <td>{{ item.gst_rate }}</td>
+	<td><a href="" onclick="return popitup('/bms/itgrdelete/{{ item.item_group }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

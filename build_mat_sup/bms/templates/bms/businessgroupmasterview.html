@@ -1,0 +1,26 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Business Group Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Group Code</td>
+        <td><b>Group Name</td>
+        <td><b>Group Head</td>
+        <td><b>Contact</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.group_code }}</td>
+        <td>{{ item.group_name }}</td>
+        <td>{{ item.group_head }}</td>
+        <td>{{ item.contact_no }}</td>
+	<td><a href="" onclick="return popitup('/bms/bgroupdelete/{{ item.group_code }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

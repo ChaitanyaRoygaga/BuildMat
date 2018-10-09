@@ -1,0 +1,18 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Item Master [Add New]
+</header>
+<center>
+<article>
+<table width="36%">
+	<tr align="center"><td colspan="2"><h6>[Provide Short Name of Item for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:items' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+	<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+{% endblock %}

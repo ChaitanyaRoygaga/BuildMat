@@ -1,0 +1,24 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	State Master
+</header>
+<center>
+<article>
+    <table border="5px" width="70%" height="100%">
+    <tr align="center">
+        <td><b>State Code</b></td>
+        <td><b>State Number</b></td>
+        <td><b>State</b></td>
+    </tr>
+    {% for item in all_items %}
+    <tr align="center"> 
+        <td>{{ item.state_code }}</td>
+        <td>{{ item.state_no }}</td>
+        <td>{{ item.state_name }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+</center>
+{% endblock %}

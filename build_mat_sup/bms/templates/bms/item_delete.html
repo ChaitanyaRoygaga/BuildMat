@@ -1,0 +1,27 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<script type="text/javascript">
+        function refreshParent() {
+            if (window.opener != null && !window.opener.closed) {
+                window.opener.location.reload();
+            }
+        }
+        //call the refresh page on closing the window
+        window.onunload = refreshParent;
+</script>
+<style>
+body{
+    margin: 20px;
+}
+</style>
+</head>
+
+<body margin="20px">
+<center>
+    <form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete {{ object }}?</p>
+    <input class="btn btn-primary" type="submit" value="Confirm" />
+    </form>
+</center>
+</body>

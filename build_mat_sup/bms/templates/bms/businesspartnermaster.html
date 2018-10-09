@@ -1,0 +1,25 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<head>
+<style>
+	#id_bp_type {
+    width: 87%;
+}
+</style>
+</head>
+<header>
+	Business-Partner Master [Add New]
+</header>
+<center>
+<article>
+	<table width="40%">
+	<tr align="center"><td colspan="2"><h6>[Provide Business Partner Name for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:bp' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+		<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+{% endblock %}

@@ -1,0 +1,14 @@
+1. pip install django-filter
+    INSTALLED_APPS = [
+...
+'django_filters',
+]
+2. bms.apps.BmsConfig
+3. widget_tweaks
+4. django_popup_view_field
+
+5. Weasyprint (PDF): [https://media.readthedocs.org/pdf/weasyprint/latest/weasyprint.pdf]
+    Step 1: sudo apt-get install build-essential python3-dev python3-pip python3-setuptools
+˓→python3-wheel python3-cffi libcairo2 libpango-1.0-0 libpangocairo-1.0-0 libgdk-
+˓→pixbuf2.0-0 libffi-dev shared-mime-info
+    Step 2: pip install WeasyPrint

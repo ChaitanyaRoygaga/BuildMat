@@ -1,0 +1,38 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Business-Partner Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Code</td>
+        <td><b>Name</td>
+        <td><b>Address Line 1</td>
+        <td><b>Address Line 2</td>
+        <td><b>City</td>
+        <td><b>PIN</td>
+        <td><b>State Code</td>
+        <td><b>GST Number</td>
+        <td><b>PAN/Aadhar Number</td>
+        <td><b>Business Partner Type</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.code }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.address_1 }}</td>
+        <td>{{ item.address_2 }}</td>
+	<td>{{ item.city }}</td>
+        <td>{{ item.pin }}</td>
+        <td>{{ item.state_code }}</td>
+        <td>{{ item.gst_no }}</td>
+	<td>{{ item.pan_aadhar_no }}</td>
+        <td>{{ item.bp_type }}</td>
+	<td><a href="" onclick="return popitup('/bms/bdelete/{{ item.name }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

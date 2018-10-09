@@ -1,0 +1,38 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Lorry Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Lorry Code</td>
+        <td><b>Lorry Number</td>
+        <td><b>Driver</td>
+        <td><b>Contact</td>
+	<td><b>Tax Date</td>
+        <td><b>PUC Date</td>
+        <td><b>Permit Date</td>
+        <td><b>Insurance Date</td>
+	<td><b>Length</td>
+        <td><b>Breadth</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.lorry_code }}</td>
+        <td>{{ item.lorry_no }}</td>
+        <td>{{ item.driver }}</td>
+        <td>{{ item.contact }}</td>
+	<td>{{ item.tax_date }}</td>
+        <td>{{ item.puc_date }}</td>
+        <td>{{ item.permit_date }}</td>
+        <td>{{ item.insur_date }}</td>
+	<td>{{ item.length }}</td>
+        <td>{{ item.breadth }}</td>
+	<td><a href="" onclick="return popitup('/bms/lorrydelete/{{ item.lorry_code }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

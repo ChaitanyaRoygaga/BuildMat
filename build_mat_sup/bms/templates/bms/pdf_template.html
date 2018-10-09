@@ -1,0 +1,67 @@
+<html>
+<head>
+  <title>Test</title>
+  <style>
+    @page {
+		margin:0cm;
+		size: landscape;
+	}
+    body {
+
+    }
+    header {
+		height: 10%;
+		background-color: #666666;
+		text-align: center;
+		padding: 10px;
+		font-size: 35px;
+	}
+  </style>
+</head>
+<body>
+<header>
+	Raj Builders
+</header>
+<center>
+<table width="100%" height="50%">
+    <tr align="center"><td colspan="16"><h3><u>Transaction List</u></h3></td></tr>
+    <tr align="center">
+        <td><b>Transaction Date</td>
+        <td><b>Voucher Number</td>
+        <td><b>Lorry Code</td>
+        <td><b>Trip</td>
+        <td><b>Challan Number</td>
+        <td><b>Buyer</td>
+        <td><b>Supplier</td>
+        <td><b>Site Code</td>
+        <td><b>Short Name</td>
+        <td><b>Length</td>
+        <td><b>Breadth</td>
+        <td><b>Height</td>
+        <td><b>Quantity</td>
+        <td><b>Purchase Rate</td>
+        <td><b>Sale Rate</td>
+    </tr>
+    {% for item in all_items.qs %}
+    <tr align="center"> 
+        <td>{{ item.tr_date }}</td>
+        <td>{{ item.vr_no }}</td>
+        <td>{{ item.lorry_code }}</td>
+        <td>{{ item.trip }}</td>
+	    <td>{{ item.challan_no }}</td>
+        <td>{{ item.buyer }}</td>
+        <td>{{ item.supplier }}</td>
+        <td>{{ item.site_code }}</td>
+	    <td>{{ item.short_name }}</td>
+        <td>{{ item.length }}</td>
+        <td>{{ item.breadth }}</td>
+        <td>{{ item.height }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.pur_rate }}</td>
+        <td>{{ item.sale_rate }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</center>
+</body>
+</html>

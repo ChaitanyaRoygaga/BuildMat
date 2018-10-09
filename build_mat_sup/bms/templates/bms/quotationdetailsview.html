@@ -1,0 +1,26 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Quotation Details View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Quotation Number</td>
+        <td><b>Site Code</td>
+        <td><b>Item Name</td>
+        <td><b>Rate</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.quot_no }}</td>
+        <td>{{ item.site_code }}</td>
+        <td>{{ item.short_name }}</td>
+        <td>{{ item.rate }}</td>
+	<td><a href="" onclick="return popitup('/bms/quotedetailsdelete/{{ item.quot_no }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}

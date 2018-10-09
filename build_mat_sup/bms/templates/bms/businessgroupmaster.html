@@ -1,0 +1,18 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Business Group Master [Add New]
+</header>
+<center>
+<article>
+    <table width="38%">
+	<tr align="center"><td colspan="2"><h6>[Provide Business Group Code for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:businessgroup' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+		<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+{% endblock %}

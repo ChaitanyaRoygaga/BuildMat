@@ -1,0 +1,162 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+
+<!--DatePicker-->
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+   <script type="text/javascript">
+       $(function() {
+               $("#datepicker").datepicker({ dateFormat: "yy-mm-dd" }).val()
+       });
+   </script>
+
+<!--Pop Up-->
+<script language="javascript" type="text/javascript">
+function popitup(url) {
+    var left = (screen.width - 400) / 2;
+    var top = (screen.height - 200) / 4;
+    newwindow=window.open(url,'{{title}}','height=200,width=400,top='+top+',left='+left);
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+</script>
+
+<!--Convert ft,inch to cm-->
+<script language="javascript" type="text/javascript">
+function convert1() {
+	var uFt = document.getElementById('ft1');
+	var uIn = document.getElementById('in1');
+	var uCm = document.getElementById('cm1');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot1');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function convert2() {
+	var uFt = document.getElementById('ft2');
+	var uIn = document.getElementById('in2');
+	var uCm = document.getElementById('cm2');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot2');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function convert3() {
+	var uFt = document.getElementById('ft3');
+	var uIn = document.getElementById('in3');
+	var uCm = document.getElementById('cm3');
+	var ft = Math.abs(uFt.value);
+	var inch = Math.abs(uIn.value);
+	var cm = Math.abs(uCm.value);
+	var formula = (ft*12) + inch + (cm*0.393701);
+	var answer = Math.round(formula*10)/10;
+	var inTot = document.getElementById('inTot3');
+	inTot.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function prod() {
+	var in1 = document.getElementById('inTot1').value;
+	var in2 = document.getElementById('inTot2').value;
+	var in3 = document.getElementById('inTot3').value;
+	var q = document.getElementById('quantity');
+	var formula = (in1*in2*in3)/(172800);
+	var answer = Math.round(formula*100)/100;
+	q.value = answer;
+}
+</script>
+<script language="javascript" type="text/javascript">
+function addVoucher() {
+	var date = document.getElementById('datepicker').value;
+	date1 = date.toString();
+	var d1 = date1.substr(2, 8);
+	d1=d1.replace(/-/g, '')
+	var q = document.getElementById('voucher');
+	var formula = d1+"00"+1;
+	q.value = formula;
+}
+</script>
+
+</head>
+<body margin-top="20px" >
+<header>
+	Transaction View
+</header>
+<center>
+<search>
+<table cellpadding="5px">
+	<form method="get">
+	<tr><td align="right"><b>DATE RANGE:</b></td><td> <input placeholder="Eg. 2018-01-13" {{ filter.form.date_between }} </td></tr>
+    <tr><td align="right"><b>SITE:</b></td><td>{{ filter.form.site_code }}</td></tr>
+    <tr><td align="right"><b>LORRY CODE:</b></td><td>{{ filter.form.lorry_code }}</td></tr>
+    <tr><td align="right"><b>BUYER:</b></td><td>{{ filter.form.buyer }}</td></tr>
+    <tr><td align="right"><b>SUPPLIER:</b></td><td>{{ filter.form.supplier }}</td></tr>
+    <tr><td align="right"><b>SHORT NAME:</b></td><td>{{ filter.form.short_name }}</td></tr>
+	<tr>
+        <td></td>
+        <td>
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="/bms/html_to_pdf_view/">Generate PDF</a> |
+            <a href="/bms/export_transactions_csv/">Export all transactions to Spreadsheet</a>
+        </td>
+    </tr>
+	</form>
+</table>
+</search>
+</center>
+<article id="Print">
+<table width="100%">
+    <tr align="center">
+        <td><b>Transaction Date</td>
+        <td><b>Voucher Number</td>
+        <td><b>Lorry Code</td>
+        <td><b>Trip</td>
+        <td><b>Challan Number</td>
+        <td><b>Buyer</td>
+        <td><b>Supplier</td>
+        <td><b>Site Code</td>
+        <td><b>Short Name</td>
+        <td><b>Length</td>
+        <td><b>Breadth</td>
+        <td><b>Height</td>
+        <td><b>Quantity</td>
+        <td><b>Purchase Rate</td>
+        <td><b>Sale Rate</td>
+	<td></td>
+    </tr>
+    {% for item in filter.qs %}
+    <tr align="center">
+		<td>{{ item.tr_date }}</td>
+		<td>{{ item.vr_no }}</td>
+		<td>{{ item.lorry_code }}</td>
+		<td>{{ item.trip }}</td>
+		<td>{{ item.challan_no }}</td>
+		<td>{{ item.buyer }}</td>
+		<td>{{ item.supplier }}</td>
+		<td>{{ item.site_code }}</td>
+		<td>{{ item.short_name }}</td>
+		<td>{{ item.length }}</td>
+		<td>{{ item.breadth }}</td>
+		<td>{{ item.height }}</td>
+		<td>{{ item.quantity }}</td>
+		<td>{{ item.pur_rate }}</td>
+		<td>{{ item.sale_rate }}</td>
+		<td><a href="" onclick="return popitup('/bms/tdelete/{{ item.vr_no }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+</body>
+{% endblock %}

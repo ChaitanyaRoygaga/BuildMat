@@ -1,0 +1,25 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<head>
+<style>
+	#id_pin, #id_phone, #id_mobile, #id_ac_no, #id_ifsc_code, #id_interest_rate {
+    width: 85%;
+}
+</style>
+</head>
+<header>
+	Company Master [Add New]
+</header>
+<center>
+<article>
+    <table width="35%">
+	<tr align="center"><td colspan="2"><h6>[Provide Company Code for updating corresponding values]</h6></td></tr>
+	<form id="myForm" action="{% url 'bms:companymaster' %}" method="POST">
+	{% csrf_token %}
+		{{ form }}
+	<tr><td></td><td><input type="submit" value="Submit" class="btn btn-primary"/></td></tr>
+	</form>
+</table>
+</article>
+</center>
+{% endblock %}

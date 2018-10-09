@@ -1,0 +1,22 @@
+{% extends 'bms/base.html' %}
+{% block content %}
+<header>
+	Unit Of Measure Master View
+</header>
+<article>
+<table width="100%">
+    <tr align="center">
+        <td><b>Code</td>
+        <td><b>Name</td>
+	<td></td>
+    </tr>
+    {% for item in view %}
+    <tr align="center">
+        <td>{{ item.uom_code }}</td>
+        <td>{{ item.uom_name }}</td>
+	<td><a href="" onclick="return popitup('/bms/uomdelete/{{ item.uom_code }}')">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</article>
+{% endblock %}
